@@ -42,7 +42,7 @@ def test_get_default_gateway() -> None:
 
 def test_get_network_information() -> None:
     result4 = get_network_information()
-    print("Network Information: " + result4)
+    print("Network Information: " + str(result4))
     assert result4 is not None
     assert isinstance(result4, dict)
     assert "local_ip" in result4
@@ -50,7 +50,7 @@ def test_get_network_information() -> None:
     assert "gateway" in result4
 
 def test_calc_network_address() -> None:
-    local_ip = get_local_ip
+    local_ip = get_local_ip()
     subnet_mask = get_subnet_mask(local_ip)
     result5 = calc_network_address(local_ip, subnet_mask)
     print("Network Address: " + result5)
@@ -61,14 +61,15 @@ def test_calc_host_count() -> None:
     local_ip = get_local_ip()
     subnet_mask = get_subnet_mask(local_ip)
     result6 = calc_host_count(subnet_mask)
-    print("Host Count: " + result6)
+    print("Host Count: " + str(result6))
     assert result6 is not None
     assert isinstance(result6, int)
 
 def test_generate_ip_range() -> None:
     network_info = get_network_information()
     result7 = generate_ip_range(network_info)
-    print("IP Range Count: " + len(result7))
+    print("IP Range Count: " + str(len(result7)))
+    print("IP Range: ", result7)
     assert result7 is not None
     assert  isinstance(result7, list)
     assert len(result7) > 0

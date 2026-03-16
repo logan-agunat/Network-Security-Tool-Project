@@ -92,13 +92,14 @@ def get_default_gateway() -> str | None:
     
     try:
         result = subprocess.run(
-            command = ["route", "print", "0.0.0.0"],
+            ["route", "print", "0.0.0.0"],
             capture_output = True,
             text = True,
             check = False,
         )
         # iterate over each line of the command's output
         lines = result.stdout.splitlines()
+        print(result.stdout) #debug
         for line in lines:
             # Remove any whitespace before checks/split
             clean_line = line.strip()
@@ -112,7 +113,7 @@ def get_default_gateway() -> str | None:
     
         print(f"Error retrieving default gateway: {e}")
     #no default gateway found, or an error occurred
-    return None
+        return None
                
 
 def get_network_information() -> dict | None:
@@ -173,7 +174,7 @@ def calc_host_count(subnet_mask: str) -> int:
     """
 
     # Convert subnet_mask string into a network object
-    network = ipaddress.IPv4Network(subnet_mask)
+    network = ipaddress.IPv4Network(f"0.0.0.0/{subnet_mask}", strict=False)
     #network ← CREATE IPv4Network object from subnet_mask
     # Get the total number of hosts/addresses in the network
     total_hosts = network.num_addresses
@@ -198,6 +199,9 @@ def generate_ip_range(network_information: dict) -> list:
 
     network_address = calc_network_address(local_ip, subnet_mask)
     host_count = calc_host_count(subnet_mask)
+
+    print("Network address: ", network_address)
+    print("Host count: ", host_count)
 
     ip_list = []
     for i in range(1, host_count + 1):
