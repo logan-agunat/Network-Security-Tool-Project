@@ -5,7 +5,7 @@
 #Description: Contains the neccessary helper functions.      
 ############################################################
 
-from scapy.layers.12 import Ether
+from scapy.layers import Ether #do i need the 12?
 import socket
 from datetime import datetime
 
@@ -14,12 +14,26 @@ from datetime import datetime
 def reverse_dns_lookup(ip_address: str) -> str:
     #Extract the MAC address from the probe response
     #Return it as a formatted string
-    pass
+    try:
+        host_info = socket.gethostbyaddr(ip_address)
+        print(f"Host Info: {host_info}")
+        return host_info
+    except Exception:
+        return "unknown"
+
 
 def calculate_response_time(response: object) -> float | None:
     #Calculate howe long device took to respond
     #Return it in milliseconds
-    pass
+    if response is None:
+        return None
+    #get response time from response
+    #convert response time to milliseconds
+    try:
+        response_time = (response[1].time - response[0].time) * 1000
+        return response_time
+    except Exception:
+        return None
 
 def parse_mac_from_response(response: object) -> str | None:
     #Try to resolve the IP to a hostname
@@ -36,4 +50,22 @@ def collect_device_data(ip_address: str, response: object) -> dict | None:
     # calls the functions above
     #bundles everything into a dictionary
     #Returns a complete device record with IP, MAC, vendor, hostname, latency, and timestamp
-    pass
+    if response is None:
+        return None
+    
+    mac = parse_mac_from_response(response)
+    latency = calculate_response_time(response)
+    hostname = reverse_dns_lookup(ip_address)
+
+    #ip, mac, vendor, host, latency, time stamp
+
+    device = {
+        "ip_address"    : ip_address,
+        "mac" : mac,
+        "vendor"    : "unknown", #with vendor.py
+        "hostname"  : hostname,
+        "latency"   : latency,
+    "time stamp"    : datetime.now().strft("%Y-%m-%d %H:%M:%S")
+    }
+    return device
+
