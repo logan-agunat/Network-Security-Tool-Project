@@ -18,7 +18,6 @@ def test_lookup_mac_vendor() -> None:
 
     #test with Unknown
     result2 = lookup_mac_vendor("Unknown") 
-    print("Vendor lookup result: "+ result2)
     assert result2 == "Unknown"
     print("Unknown test has passed!")
  
