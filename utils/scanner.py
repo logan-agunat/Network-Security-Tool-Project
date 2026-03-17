@@ -37,7 +37,6 @@ def probe_device(ip_address):
         return None
 
     
-
 def run_discovery_scan(scan_range: list) -> list:
     """Scans a list of IP addresses and returns all active devices.
     Parameters:
