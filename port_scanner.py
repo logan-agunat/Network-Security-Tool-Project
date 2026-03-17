@@ -2,7 +2,7 @@
 #Author: Logan Agunat
 #Date created: 3/17/26
 #Date last modified:
-#Description: Port Scanner module. 
+#Description: Port Scanner module
 ############################################################
 import socket
 

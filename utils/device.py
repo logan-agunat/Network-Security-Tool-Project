@@ -2,7 +2,7 @@
 #Author: Logan Agunat
 #Date created: 3/13/26
 #Date last modified:
-#Description: Contains the neccessary helper functions.      
+#Description: Contains the neccessary helper functions      
 ############################################################
 """device.py
 Description:
@@ -15,15 +15,6 @@ Functions:
     collect_device_data(ip_address, response)   - Bundles all device dat a
 Dependencies:
     scapy, socket, datetinme
-
-
-
-
-
-
-
-
-
 """
 from scapy.layers.l2 import Ether
 import socket
