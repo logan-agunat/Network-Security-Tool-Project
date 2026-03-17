@@ -4,6 +4,10 @@
 #Date last modified:
 #Description: Test file for scanner.py   
 ############################################################
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from utils.scanner import(
     probe_device,
     run_discovery_scan
