@@ -148,7 +148,6 @@ def get_network_information() -> dict | None:
     }
     return network_information
 
-
 def calc_network_address(local_ip: str, subnet_mask: str) -> str:
     """Calculate the network address from an IP and subnet mask.
     Parameters:
