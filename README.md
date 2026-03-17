@@ -16,7 +16,8 @@ Project Description:
 
     Project Phases:
       P1: Get it working on my machine
-        - complete all util files, etc
+        - complete all util files and test files
+        - Complete/test/run all modules
         - test it end to end
         - fix bugs
       P2: Make it robust
