@@ -4,6 +4,8 @@
 #Date last modified:
 #Description: Contains the neccessary helper functions.        
 ############################################################
+
+#implement OOP later?
 """
 network.py
 
