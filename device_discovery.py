@@ -41,7 +41,7 @@ def start_discovery() -> None:
         return
     #generate ip range
     scan_range = generate_ip_range(network_info)
-    print(f"Scanning" + {len(scan_range)} + "IP addresses...." )
+    print(f"Scanning {len(scan_range)} IP addresses...." )
 
     # run discovery scan
     discovered_devices = run_discovery_scan(scan_range)
