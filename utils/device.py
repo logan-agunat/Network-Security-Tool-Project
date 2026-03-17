@@ -4,7 +4,27 @@
 #Date last modified:
 #Description: Contains the neccessary helper functions.      
 ############################################################
+"""device.py
+Description:
+    Helper module for extracting and bundling device information
+    from a scapy packet response.
+Functions:
+    parse_mac_from_response(response)           - Extracts MAC address from response
+    calculate_response_time(response)           - Calculates response time in ms
+    reverse_dns_lookup(ip_address)              - Resolves IP to hostname
+    collect_device_data(ip_address, response)   - Bundles all device dat a
+Dependencies:
+    scapy, socket, datetinme
 
+
+
+
+
+
+
+
+
+"""
 from scapy.layers.l2 import Ether
 import socket
 from datetime import datetime
