@@ -5,7 +5,7 @@
 #Description: Packet sniffer module.
 ############################################################
 
-from scapy import SNIFF
+from scapy.all  import sniff 
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 
 def process_packet(packet) -> None:
@@ -45,9 +45,11 @@ def process_packet(packet) -> None:
         print(f"{src_ip} | {dst_ip} | {protocol} | {src_port} | {dst_port} | {size} ")
    
 def sniff_packets(interface: str, pkt_count: int) -> list:
-     try:
+    try:
         #packets - sniff on interface
-            count = pkt_count
+        packets = sniff(iface = interface, count = pkt_count, prn = process_packet) #prn tells scapy to call that 
+                                                                                    # process_packet for each packet
+        return packets
             #then process each packet with process_packet
         #return packets
 
@@ -60,6 +62,6 @@ def start_sniffer(interface: str, pkt_count: int) -> list:
     print("STARTING packet capture on interface: " + interface)
     print(f"Capturing + {pkt_count} + packets.......")
     print("==================================================")
-    packets = sniff_packets(inteface, pkt_count)
+    packets = sniff_packets(interface, pkt_count)
     print("==================================================")
     print(f"CAPTURED + {len(packets)} packets....")

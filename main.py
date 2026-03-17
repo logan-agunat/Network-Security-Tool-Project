@@ -6,26 +6,26 @@
 ############################################################
 from device_discovery import start_discovery
 from port_scanner import scan_ports
+from packet_sniffer import start_sniffer, sniff_packets
+from traffic_analyzer import start_traffic_analyzer
 
-
-# Header
-print("================================")
-print("     NETWORK SECURITY TOOL      ")
-print("================================")
-#Menu
-print("1. Device Discovery")
-print("2. Port Scanner")
-print("3. Packet Sniffer")
-print("4. Traffic Analyzer")
-print("5. Alert Engine")
-print("6. Exit")
-print("================================")
 
 def get_user_choice() -> str:
     user_input = input("Enter your choice: ")
     return user_input
 
 def main() -> None:
+    print("================================")
+    print("     NETWORK SECURITY TOOL      ")
+    print("================================")
+    #Menu
+    print("1. Device Discovery")
+    print("2. Port Scanner")
+    print("3. Packet Sniffer")
+    print("4. Traffic Analyzer")    
+    print("5. Alert Engine")
+    print("6. Exit")
+    print("================================")
     while True:
 
         choice = get_user_choice()
@@ -45,16 +45,20 @@ def main() -> None:
             interface = input("Enter network in inteface(e.g: eth0, WiFi): ")
             pkt_count = input("Enter number of packets to capture: ")
             start_sniffer(interface, pkt_count)
+        #Traffic Analyzer
+        elif choice == "4":
+            interface = input("Enter network interface: ")
+            count = int(input("Enter number of packets to capture: "))
+            packets = sniff_packets(interface, count)
+            start_traffic_analyzer(packets)
+        #Alert Engine
+        elif choice == "5":
+            pass
+        else:
+            print("Exiting program.......")
+            exit()
             
             
-
-       # ELSE IF choice EQUALS "3" THEN
-            #PRINT "Exiting..."
-            #EXIT
-
-       # ELSE
-            #PRINT "Invalid choice. Please try again."
-        #END IF
-    #END WHILE
- 
+if __name__ == "__main__":
+    main()
 
