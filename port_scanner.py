@@ -32,13 +32,10 @@ def scan_port(ip_address: str, port: int) -> bool:
     
 def scan_ports(ip_address: str, port_range: list) -> list:
    #open_ports ← EMPTY LIST
+    open_ports = []
 
-    #FOR each port IN port_range
-        #result ← scan_port(ip_address, port)
-
-        #IF result IS True THEN
-            #ADD port TO open_ports
-        #END IF
-   # END FOR
-
-    #RETURN open_ports
+    for port in port_range:
+        result = scan_port(ip_address, port)
+        if result == True:
+           open_ports.append(port)
+    return open_ports
