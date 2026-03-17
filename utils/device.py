@@ -5,7 +5,7 @@
 #Description: Contains the neccessary helper functions.      
 ############################################################
 
-from scapy.layers import Ether #do i need the 12?
+from scapy.layers.l2 import Ether
 import socket
 from datetime import datetime
 
@@ -15,7 +15,7 @@ def reverse_dns_lookup(ip_address: str) -> str:
     #Extract the MAC address from the probe response
     #Return it as a formatted string
     try:
-        host_info = socket.gethostbyaddr(ip_address)
+        host_info = socket.gethostbyaddr(ip_address)[0]
         print(f"Host Info: {host_info}")
         return host_info
     except Exception:
@@ -40,11 +40,14 @@ def parse_mac_from_response(response: object) -> str | None:
     #Return the hostname or "Unknown" if it fails
     if response is None:
         return None
-    if Ether in response:
-        mac_address = response[Ether].src
-        return mac_address
-    else:
-        return "Unnknown"
+    try:
+        if response.haslayer(Ether):
+            mac_address = response[Ether].src
+            return mac_address
+        else:
+            return "Unnknown"
+    except Exception:
+        return "Unknown"
 
 def collect_device_data(ip_address: str, response: object) -> dict | None:
     # calls the functions above
@@ -60,12 +63,12 @@ def collect_device_data(ip_address: str, response: object) -> dict | None:
     #ip, mac, vendor, host, latency, time stamp
 
     device = {
-        "ip_address"    : ip_address,
+        "ip"    : ip_address,
         "mac" : mac,
         "vendor"    : "unknown", #with vendor.py
         "hostname"  : hostname,
         "latency"   : latency,
-    "time stamp"    : datetime.now().strft("%Y-%m-%d %H:%M:%S")
+        "timestamp"    : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
     return device
 
