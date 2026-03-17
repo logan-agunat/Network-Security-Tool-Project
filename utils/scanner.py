@@ -4,11 +4,26 @@
 #Date last modified:
 #Description: Contains the neccessary helper functions.      
 ############################################################
+"""scanner.py
+Description:
+    Handles network scanning by sending ICMP probes to target IP addresses
+    and collecting response from active devices.
+Functions:
+    probe_device(ip_address)        - Sends ICMP ping and will return a response
+    run_discovery_scan(scan_range)  - Scansa list of IPs and returns active devices
+Dependencies:
+    scapy, utils.device
+"""
 from scapy.layers.inet import IP, ICMP
 from scapy.sendrecv import sr1
 from utils.device import collect_device_data
 
 def probe_device(ip_address):
+    """Sends an ICMP ping to a target IP and waits for a response.
+    Parameters:
+        object: The scapy packet response if device is active
+        None: If no response received or an error occured
+    """
     try:
         # build the packet; 
         packet = IP(dst=ip_address) / ICMP()
@@ -24,6 +39,12 @@ def probe_device(ip_address):
     
 
 def run_discovery_scan(scan_range: list) -> list:
+    """Scans a list of IP addresses and returns all active devices.
+    Parameters:
+        scan_range (list): A list of IP address strings to scan
+    Returns:
+        list: A list of device dictionaries containing de vice information
+    """
     device_list = []
     failed_list = []
 
