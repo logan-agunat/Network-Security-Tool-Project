@@ -62,6 +62,7 @@ def get_subnet_mask(local_ip: str) -> str | None:
         -Only IPv4 addresses are considered
         -Relies on ptusil to query local interface information
     """
+    
     # list of (ip, netmask) tuples
     interfaces_info = {}
     try:

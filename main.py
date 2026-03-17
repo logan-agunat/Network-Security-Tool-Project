@@ -42,6 +42,9 @@ def main() -> None:
             scan_ports(ip_address, port_range)
         #Packet Sniffer
         elif choice == "3":
+            interface = input("Enter network in inteface(e.g: eth0, WiFi): ")
+            pkt_count = input("Enter number of packets to capture: ")
+            start_sniffer(interface, pkt_count)
             
             
 
