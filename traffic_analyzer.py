@@ -58,7 +58,7 @@ def analyze_traffic(packets: list) -> dict:
     return analysis
     
 def display_analysis(analysis: dict) -> None:
-    #Header here
+    
     print("================================")
     print("   Traffic Analysis Results     ")
     print("================================")
@@ -68,7 +68,6 @@ def display_analysis(analysis: dict) -> None:
         print(f"{protocol} : {count}")
 
     #total bytes
-        #print total bytes captured
         print(f"Total Bytes Captureed: {analysis["total_bytes"]}")
 
     #top 5 source ip (print this)
@@ -82,7 +81,6 @@ def display_analysis(analysis: dict) -> None:
         print(f"{d_ip}: {count} packets...")
        
 def start_traffic_analyzer(packets: list) -> None:
-    #IF packet is []:
     if not packets:
         print("No packets to analyze...")
         return
