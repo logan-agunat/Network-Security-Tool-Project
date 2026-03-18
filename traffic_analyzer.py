@@ -1,9 +1,9 @@
-############################################################
+################################################################
 #Author: Logan Agunat
 #Date created: 3/17/26
 #Date last modified:
 #Description: Traffic Analyzer module.
-############################################################
+###############################################################
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 
 def analyze_traffic(packets: list) -> dict:
