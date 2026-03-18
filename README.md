@@ -7,6 +7,10 @@ Project Description:
   Project was created for educational purposes only.
   Only use on networks that are isolated, are owned by you, or you if you have permission to test.
 
+## TODO
+Undergo testing utils/, modules/ main.py
+
+
 ## Features
       -Device discovery on local networks
       -Port scanning for open services
