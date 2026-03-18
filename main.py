@@ -4,10 +4,11 @@
 #Date last modified:
 #Description: Main drive of the program
 ############################################################
-from device_discovery import start_discovery
-from port_scanner import scan_ports
-from packet_sniffer import start_sniffer, sniff_packets
-from traffic_analyzer import start_traffic_analyzer
+from modules.device_discovery import start_discovery
+from modules.port_scanner import scan_ports
+from modules.packet_sniffer import start_sniffer, sniff_packets
+from modules.traffic_analyzer import start_traffic_analyzer
+from modules.alert_engine import start_alert_engine
 
 
 def get_user_choice() -> str:
@@ -53,7 +54,9 @@ def main() -> None:
             start_traffic_analyzer(packets)
         #Alert Engine
         elif choice == "5":
-            pass
+            interface = input("Enter network interface: ")
+            count = int(input("Enter number of packets to capture: "))
+            start_alert_engine(interface, count)
         else:
             print("Exiting program.......")
             exit()
