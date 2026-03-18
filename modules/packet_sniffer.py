@@ -5,7 +5,7 @@
 #Description: Packet sniffer module.
 ############################################################
 
-from scapy.all  import sniff 
+from scapy.all import sniff 
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 
 def process_packet(packet) -> None:
