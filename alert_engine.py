@@ -10,30 +10,32 @@ import datetime
 
 
 def check_port_scan(packet, connection_tracker: dict, port_scan_threshold: int) -> None:
-    #if packet has ip layer and tcp layer:
-        #extract src_ip from packet
-        #extract dst_port from packet tcp layer
+    if packet.haslayer(IP) and packet.haslayer(TCP):
+        src_ip = packet[IP].src
+        dst_port = packet[TCP].dport
 
-        #if src_ip not in connection_tracker:
-            # set connection_tracker[src_ip] to empty set
-        #add dst_port to connection_tracker[src_ip]
-
-        #if count of connection_tracker[src_ip] ? threshold:
-            #call process alert (port scan detected, src_ip scanned, count of connection_tracker[src_ip], ports)
-
-            #reset tracker for this IP to avoid repeated alerts
-            # set connection_tracker[src_ip] to empty set
-    pass
+        if src_ip not in connection_tracker:
+            connection_tracker[src_ip] = () #set to empty set
+            connection_tracker[src_ip].append(dst_port)
+        ports_scanned = len(connection_tracker[src_ip])
+        if ports_scanned > port_scan_threshold:
+            process_alert(
+                "Port Scan detected",
+                src_ip,
+                f"Scanned: {ports_scanned} ports"
+            )
+            #reset  for this IP to avoid repeated alerts
+            connection_tracker[src_ip] = ()
 
 def check_suspicious_ip(packet, black_list):
-    #if packet has the IP layer:
-        #extract source ip and dest ip from packet
-
-        #if src_ip in blacklist:
-            #call process_alert("Sus IP", src_ip, "source ip is blacklisted")
-        #same for dst_ip
-    pass
-
+    if packet.haslayer(IP):
+        src_ip = packet[IP].src
+        dst_ip = packet[IP].dst
+    if src_ip in black_list:
+            process_alert("Suspicious IP", src_ip, "source ip is blacklisted..." )
+    if dst_ip in black_list:
+        process_alert("Suspicious IP", dst_ip, "source ip is blacklisted..." )
+   
 def check_large_packet(packet, pkt_threshold: int) -> None:
 
     if packet.haslayer(IP):
