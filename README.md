@@ -24,6 +24,7 @@ Project Description:
   1. Clone the repository
   2. Install dependencies (see Documentation.md)
   3. Run the main program (python main.py)
+      **RUN AS ADMINISTRATOR**
 
 ## Example Output
   
