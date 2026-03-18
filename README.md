@@ -1,76 +1,56 @@
-Network-Security-Tool-Project
-Date started: 3/13/25
+# Network Security Toolkit
 
 Project Description:
-  This is a python based network analysis/security tool, designed to explore security/networking concepts like port scanning,
-  device discovery, and network traffic analysis.
-  Project was created as a learning exercise to understand network security, build skills in python, etc.
-  Drew conceptual inspiration from Nmap & Wireshark.
+  A python-based network analysis and security tool for device discovery, port scanning, packet sniffing, and traffic inspection and detection.
 
-  Overview:
-    Project aim:
-      -Identify devices on a local network
-      - Analyze network services exposed by those devices
-      - Monitor network traffic patterns
-      - Detect potentially suspicious behavior
+## **DISCLAIMER **
+  Project was created for educational purposes only.
+  Only use on networks that are isolated, are owned by you, or you if you have permission to test.
 
-    Project Phases:
-      P1: Get it working on my machine
-        - complete all util files and test files
-        - Complete/test/run all modules
-        - test it end to end
-        - fix bugs
-      P2: Make it robust
-        - Better error handling
-        - Input validation
-        - Logging instead of print errors
-      P3: Cross platform?
-        - Adding platform detection
-        - Different code paths for each OS
-      P4: Security Hardening?
-        - Rate limiting to prevent flooding network
-        - Permission checks before scans
-        - IP range validation before scan
-        - Add warning before any scans run
-      P5: Extra features?
-        - Export results to csv or json
-        - Create simple UI
+## Features
+      -Device discovery on local networks
+      -Port scanning for open services
+      -Packet sniffing and traffic analysis
+      -Detection of basic suspicious behavior
 
-    Features/Planned modules:
-      Device Discovery:
-        Scans the local network to identify active devices
-      Port Scanner:
-        Identifies open ports/services running on discovered devices
-      Packet Sniffer:
-        Capture and analyzes live network packets
-      Traffic Analyzer:
-        Summarize captured traffic and identifies protocol usage
-      Alert Engine:
-        Detects potentially suspicious behavior such as:
-          - port scanning, unusual traffic spikes, repeated connection attempts
+## Platform Support
+  Currently Supported:
+    -Windows
+  
+  Planned:
+    -Linux (Cross platform compatability is Phase 3)
 
-    Architecture:
-      Network Security Tool
-        -> Device Discovery
-        -> Port Scanner
-        -> Packet Sniffer
-        -> Traffic Analyzer
-        -> Alert Engine
+## How to Run
+  1. Clone the repository
+  2. Install dependencies (see Documentation.md)
+  3. Run the main program (python main.py)
 
-      Project Structure:
-        main program
-          modules
-            - device discovery
-            - port scanner
-            - packet sniffer
-            - traffic analyzer
-            - alert engine
-          utilities(util)
-            - networking helper functions
-            - packet parsing
-            - logging
-          logs
-          documentation
+## Example Output
+  
+
+    
+## Architecture:
+    Modular Design:
+      -> Device Discovery
+      -> Port Scanner
+      -> Packet Sniffer
+      -> Traffic Analyzer
+      -> Alert Engine
+
+## Project Structure:
+  Project/
+    main.py
+      modules
+        device_discovery.py
+        port_scanner.py
+        packet_sniffer.py
+        traffic_analyzer.py
+        alert_engine.py
+  utils/
+  tests/
+  logs/
+  documentation.md
+
 
       
       
