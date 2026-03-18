@@ -18,7 +18,7 @@ def analyze_traffic(packets: list) -> dict:
     total_bytes = 0
     src_ip_count = {}
     dst_ip_count = {}
-
+#test commit
     #For each packet in packets:
     for packet in packets:
         if packet.haslayer(IP):
