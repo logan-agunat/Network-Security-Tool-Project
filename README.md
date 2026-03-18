@@ -25,12 +25,11 @@ Project Description:
   2. Install dependencies (see Documentation.md)
   3. Run the main program (python main.py)
       **RUN AS ADMINISTRATOR**
-      
+
 ## Example Output
 
-  
 
-    
+  
 ## Architecture:
     Modular Design:
       -> Device Discovery
