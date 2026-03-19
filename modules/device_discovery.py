@@ -18,15 +18,15 @@ def display_results(discovered_devices: list) -> None:
         discovered_devices.sort(key=lambda device: device["ip"]) #lambda will loop through each device in the list 
                                                                   # and sort by ip address value
 
-        print("Active Devices Found: " + {len(discovered_devices)})
+        print(f"Active Devices Found: {len(discovered_devices)}")
         print("==================================================")
         for  device in discovered_devices:
-           print(f"IP:" + device["ip"])
-           print(f"MAC: " + device["mac"])
-           print(f"Vendor:   " + device["vendor"])
-           print(f"Hostname: " + device["hostname"])
-           print(f"Latency:  " + device["latency"] + "ms")
-           print(f"Timestamp:    " + device["timestamp"])
+           print(f"IP:  {device["ip"]}")
+           print(f"MAC:  {device["mac"]}")
+           print(f"Vendor:    {device["vendor"]}")
+           print(f"Hostname: {device["hostname"]}")
+           print(f"Latency:  {device["latency"]}ms")
+           print(f"Timestamp: {device["timestamp"]}")
            print("==================================================")
 
         # Optional: export
