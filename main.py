@@ -56,7 +56,7 @@ def main() -> None:
             interface = input("Enter network interface: ")
             count = int(input("Enter number of packets to capture: "))
             start_alert_engine(interface, count)
-        elif choice == "7":
+        elif choice == "6":
             print("Exiting program.......")
             exit()
             
