@@ -27,9 +27,7 @@ def main() -> None:
     print("6. Exit")
     print("================================")
     while True:
-
         choice = get_user_choice()
-
         # Device Discovery
         if choice == "1": 
             start_discovery()
@@ -40,10 +38,11 @@ def main() -> None:
             end_port = int(input("Enter end port: "))
             port_range = range(start_port, end_port + 1)
             scan_ports(ip_address, port_range)
+            print(f"Open ports on {ip_address}: {list(port_range)}")
         #Packet Sniffer
         elif choice == "3":
             interface = input("Enter network in inteface(e.g: eth0, WiFi): ")
-            pkt_count = input("Enter number of packets to capture: ")
+            pkt_count = int(input("Enter number of packets to capture: "))
             start_sniffer(interface, pkt_count)
         #Traffic Analyzer
         elif choice == "4":
