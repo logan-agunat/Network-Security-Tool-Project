@@ -10,7 +10,6 @@ from modules.packet_sniffer import start_sniffer, sniff_packets
 from modules.traffic_analyzer import start_traffic_analyzer
 from modules.alert_engine import start_alert_engine
 
-
 def get_user_choice() -> str:
     user_input = input("Enter your choice: ")
     return user_input
