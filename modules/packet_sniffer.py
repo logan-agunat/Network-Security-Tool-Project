@@ -60,8 +60,8 @@ def sniff_packets(interface: str, pkt_count: int) -> list:
 def start_sniffer(interface: str, pkt_count: int) -> list:
     #status updates
     print("STARTING packet capture on interface: " + interface)
-    print(f"Capturing + {pkt_count} + packets.......")
+    print(f"Capturing +{pkt_count}  packets.......")
     print("==================================================")
     packets = sniff_packets(interface, pkt_count)
     print("==================================================")
-    print(f"CAPTURED + {len(packets)} packets....")
+    print(f"CAPTURED  {len(packets)} packets....")
