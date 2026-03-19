@@ -41,7 +41,7 @@ def main() -> None:
             print(f"Open ports on {ip_address}: {list(port_range)}")
         #Packet Sniffer
         elif choice == "3":
-            interface = input("Enter network in inteface(e.g: eth0, WiFi): ")
+            interface = input("Enter network in interface(e.g: eth0, Wi-Fi): ")
             pkt_count = int(input("Enter number of packets to capture: "))
             start_sniffer(interface, pkt_count)
         #Traffic Analyzer
