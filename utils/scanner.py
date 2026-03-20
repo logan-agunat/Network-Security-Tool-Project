@@ -50,7 +50,8 @@ def run_discovery_scan(scan_range: list) -> list:
 
     with ThreadPoolExecutor(max_workers = 50) as executor: #scan all IPs simultaneously using 50 threads
         results = list(executor.map(probe_device, scan_range))
-    for ip_address, response in zip(scan_range, results):
+    for ip_address, response in zip(scan_range, results):   #zip will iterate and combine scan_range and results into tuples @ same index
+        response = probe_device(ip_address)
         if response is not None:
             device_info = collect_device_data(ip_address, response)
             if device_info is not None:
