@@ -6,6 +6,8 @@
 ############################################################
 import socket
 
+#put docstring
+
 def scan_port(ip_address: str, port_range: int) -> bool:
     try:
        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:

@@ -8,6 +8,7 @@
 from scapy.all import sniff 
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 
+# put docstring
 def process_packet(packet) -> None:
     if packet.haslayer(IP):
         #src_ip   ← EXTRACT source IP FROM packet

@@ -8,6 +8,8 @@
 from utils.network import get_network_information, generate_ip_range
 from utils.scanner import run_discovery_scan
 
+#put docstring
+
 def display_results(discovered_devices: list) -> None:
 
         if discovered_devices == []: 
