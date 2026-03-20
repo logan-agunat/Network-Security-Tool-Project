@@ -26,6 +26,7 @@ def main() -> None:
     print("5. Alert Engine")
     print("6. Exit")
     print("================================")
+    
     while True:
         choice = get_user_choice()
         # Device Discovery

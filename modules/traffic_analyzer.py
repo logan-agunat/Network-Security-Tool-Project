@@ -6,6 +6,7 @@
 ###############################################################
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 
+
 def analyze_traffic(packets: list) -> dict:
     #initialize counters
     #protocol_counts = (tcp,etc)
