@@ -17,6 +17,7 @@ Dependencies:
 from scapy.layers.inet import IP, ICMP
 from scapy.sendrecv import sr1
 from utils.device import collect_device_data
+from concurrent.futures import ThreadPoolExecutor
 
 def probe_device(ip_address):
     """Sends an ICMP ping to a target IP and waits for a response.
@@ -47,8 +48,9 @@ def run_discovery_scan(scan_range: list) -> list:
     device_list = []
     failed_list = []
 
-    for ip_address in scan_range:
-        response = probe_device(ip_address)
+    with ThreadPoolExecutor(max_workers = 50) as executor: #scan all IPs simultaneously using 50 threads
+        results = list(executor.map(probe_device, scan_range))
+    for ip_address, response in zip(scan_range, results):
         if response is not None:
             device_info = collect_device_data(ip_address, response)
             if device_info is not None:
