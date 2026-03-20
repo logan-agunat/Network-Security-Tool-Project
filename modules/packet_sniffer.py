@@ -53,8 +53,8 @@ def sniff_packets(interface: str, pkt_count: int) -> list:
             #then process each packet with process_packet
         #return packets
 
-    except Exception:
-        print("Error sniffing packets: " + Exception)
+    except Exception as e:
+        print(f"Error sniffing packets: {e}")
         return []
 
 def start_sniffer(interface: str, pkt_count: int) -> list:
