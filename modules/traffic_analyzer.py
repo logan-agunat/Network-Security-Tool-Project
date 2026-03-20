@@ -18,26 +18,23 @@ def analyze_traffic(packets: list) -> dict:
     total_bytes = 0
     src_ip_count = {}
     dst_ip_count = {}
-#test commit
-    #For each packet in packets:
+
     for packet in packets:
         if packet.haslayer(IP):
             total_bytes = total_bytes + len(packet)
-
             #count source IPs
             src_ip = packet[IP].src
             #if src_ip in src_ip_count:
             if src_ip in src_ip_count:
                 src_ip_count[src_ip] += 1
             else:
-                src_ip_count[src_ip] == 1
-
+                src_ip_count[src_ip] = 1
             #Count dst IPs
             dst_ip = packet[IP].dst
             if dst_ip in dst_ip_count:
                 dst_ip_count[dst_ip] += 1
             else:
-                dst_ip_count[dst_ip] == 1
+                dst_ip_count[dst_ip] = 1
             
             #Count protocols
             if packet.haslayer(TCP):
