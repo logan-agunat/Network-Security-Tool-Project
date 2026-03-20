@@ -53,7 +53,7 @@ def run_discovery_scan(scan_range: list) -> list:
     device_list = []
     failed_list = []
 
-    with ThreadPoolExecutor(max_workers = 10) as executor: #scan all IPs simultaneously using 50 threads
+    with ThreadPoolExecutor(max_workers = 20) as executor: #scan all IPs simultaneously using 50 threads
         results = list(executor.map(probe_device, scan_range))
     for ip_address, response in zip(scan_range, results):   #zip will iterate and combine scan_range and results into tuples @ same index
         response = probe_device(ip_address)
