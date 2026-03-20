@@ -9,6 +9,10 @@ from scapy.layers.inet import IP, TCP, UDP, ICMP
 #Put docstring
 
 def analyze_traffic(packets: list) -> dict:
+    """Analyzes captured packets from target IP
+    Parameters:
+        packets (list): packets of data captured from target IP
+    """
     #initialize counters
     #protocol_counts = (tcp,etc)
     protocol_counts = {
