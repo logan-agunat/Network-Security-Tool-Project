@@ -10,31 +10,6 @@
       -Port scanning for open services
       -Packet sniffing and traffic analysis
       -Detection of basic suspicious behavior
-## Project Phases:
-      P1: Get it working on my machine(Windows) # current phase
-        - complete all util files and test files
-        - Complete/test/run all modules
-        - test it end to end
-        - fix bugs
-
-      P2: Make it robust
-        - Improve error handling
-        - Add input validation
-        - Replace print statements with logging
-
-      P3: Cross platform?
-        - Detect operating system
-        - Implement OS-specific logic
-
-      P4: Security Hardening?
-        - Add rate limiting
-        - Validate IP ranges
-        - Require permission checks
-        
-      P5: Extra features?
-        - Export results to csv or json
-        - Build simple UI
-## Architecture:
 
 ### Device Discovery Module
     Responsible for identifying active devices on the local network.
