@@ -7,8 +7,6 @@ Project Description:
   Project was created for educational purposes only.
   Only use on networks that are isolated, are owned by you, or you if you have permission to test.
 
-## TODO
-Undergo testing utils/, modules/ main.py
 
 
 ## Features
@@ -20,9 +18,6 @@ Undergo testing utils/, modules/ main.py
 ## Platform Support
   Currently Supported:
     -Windows
-  
-  Planned:
-    -Linux (Cross platform compatability is Phase 3)
 
 ## How to Run
   1. Clone the repository
@@ -30,10 +25,6 @@ Undergo testing utils/, modules/ main.py
   3. Run the main program (python main.py)
       **RUN AS ADMINISTRATOR**
 
-## Example Output
-
-
-  
 ## Architecture:
     Modular Design:
       -> Device Discovery
