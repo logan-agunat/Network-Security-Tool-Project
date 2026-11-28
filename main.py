@@ -38,8 +38,8 @@ def main() -> None:
             start_port = int(input("Enter start port: "))
             end_port = int(input("Enter end port: "))
             port_range = range(start_port, end_port + 1)
-            scan_ports(ip_address, port_range)
-            print(f"Open ports on {ip_address}: {list(port_range)}")
+            open_ports = scan_ports(ip_address, port_range)
+            print(f"Open ports on {ip_address}: {open_ports}")
         #Packet Sniffer
         elif choice == "3":
             interface = input("Enter network in interface(e.g: eth0, Wi-Fi): ")
