@@ -4,40 +4,45 @@
 #Date last modified:
 #Description: Test file for scanner.py   
 ############################################################
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from unittest.mock import patch
 
-from utils.scanner import(
-    probe_device,
-    run_discovery_scan
-)
+from scapy.layers.inet import ICMP, IP
 
-# === Test Functions ===
+from utils import scanner
 
-def test_probe_device() -> None:
-    #testing with local host (should always respond)
-    result1a = probe_device("127.0.0.1")
-    print("Pobe localhost: " + str(result1a))
-    assert result1a is not None
+# === Test Functions: Local Fake Server (Non-live) ===
 
-    #testing with invali ip - returns None
-    result1b = probe_device("0.0.0.0")
-    assert result1b is None
-    print("test_probe_device has passed!")
+def test_probe_device_returns_response():
+ fake = IP(src="192.168.1.1") / ICMP()
+ with patch.object(scanner, "sr1", return_value = fake):
+    assert scanner.probe_device("192.168.1.1") is fake
 
-def test_run_discovery_scan() -> None:
-    #testing with small range containing localhost
-    result2a = run_discovery_scan(["127.0.0.1"])
-    print("Discovery scan result: " + str(result2a))
-    assert result2a is not None
-    assert isinstance(result2a, list)
+def test_prob_device_returns_none_when_no_reply():
+    with patch.object(scanner, "sr1", return_value=None):
+       assert scanner.probe_device("10.0.0.9") is None
 
-    #test with empty list
-    result2b = run_discovery_scan([])
-    assert result2b == []
-    print("test_run_discovery_scan has passed!")
+def test_probe_device_returns_none_or_error():
+    with patch.object(scanner, "sr1", side_effect=OSError):
+       assert scanner.probe_device("10.0.0.9") is None
 
-if __name__ == "__main__":
-    test_probe_device()
-    test_run_discovery_scan()
+def test_run_discovery_scan_empty_range():
+   assert scanner.run_discovery_scan([]) == []
+
+def test_run_discovery_scan_keeps_only_responders():
+    def fake_probe(ip):
+       return object() if ip.endswith(".2") else None
+
+    with patch.object(scanner, "probe_device", side_effect=fake_probe), \
+        patch.object(scanner, "collect_device_data",
+                    side_effect=lambda ip, response: {"ip": ip}):
+        result = scanner.run_discovery_scan(["10.0.0.1", "10.0.0.2"])
+    assert result == [{"ip": "10.0.0.2"}]
+
+def test_run_discovery_scan_probes_each_ip_once():
+    ips = ["10.0.0.1", "10.0.0.2", "10.0.0.3"]
+    with patch.object(scanner, "probe_device", return_value=None) as probe:
+       scanner.run_discovery_scan(ips)
+    assert probe.call_count == len(ips)     
+
+
+    
