@@ -8,31 +8,16 @@ import socket
 
 #put docstring
 
-def scan_port(ip_address: str, port_range: int) -> bool:
-    try:
-       with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR)
+def scan_port(ip_address: str, port: int, timeout: float = 1.0) -> bool:
+   "Return True if a TCP connection to ip_address:port succeeds"
+   try:
+      with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+         sock.settimeout(timeout)
+         return sock.connect_ex((ip_address, port)) == 0
+   except OSError:
+      return False
 
-        #SET sock timeout TO 1 second
-        sock.settimeout(timeout=1)
-        print(f"Open ports on {ip_address}: {list(port_range)}")
-        
-        result = sock.connect(ip_address, port_range) #attempt connection to the IP and port
-        print("Connected Succesfully!")
-      
-        if result == 0:
-           return True
-        else:
-           return False
-    except Exception:
-        return False
-    
-def scan_ports(ip_address: str, port_range: list) -> list:
-    open_ports = []
+def scan_ports(ip_adress: str, port_range: range | list[int]) -> list[int]:
+   return [port for port in port_range if scan_port(ip_adress, port)]
 
-    for port in port_range:
-        result = scan_port(ip_address, port)
-        if result == True:
-           open_ports.append(port)
-    return open_ports
-#hello
+   
