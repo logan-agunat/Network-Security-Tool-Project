@@ -35,3 +35,4 @@ def scan_ports(ip_address: str, port_range: list) -> list:
         if result == True:
            open_ports.append(port)
     return open_ports
+#hello
